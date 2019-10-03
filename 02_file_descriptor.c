@@ -32,6 +32,8 @@ int write_info(struct person* p)
         perror("failed to close");
         return -1;
     }
+
+    return 0;
 }
 
 int dump_info()
@@ -46,7 +48,7 @@ int dump_info()
     }
 
     ssize_t readLength = 0;
-    while (readLength = read(fd, &p, sizeof(struct person))) {
+    while ((readLength = read(fd, &p, sizeof(struct person))) != 0) {
         if (readLength == -1) {
             perror("failed to read");
             if (close(fd))
